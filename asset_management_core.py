@@ -67,7 +67,8 @@ class PortfolioManagement(object):
         self.cost = None #tf.Variable(shape = [None, self.nbReturns, self.nbDates])
         self.ptfReturn = None #tf.Variable(shape = [None, self.nbReturns, self.nbDates])
         self.weights = None #tf.get_variable( name = 'weight0', shape = self.inputs[:, :, 0].get_shape().as_list(),
-                             #           trainable=False, initializer=tf.constant_initializer(1./self.nbReturns))
+        self.return_cumules = None                     #           trainable=False, initializer=tf.constant_initializer(1./self.nbReturns))
+        self.cost_cumules = None
 
         prevWeights = 1. / self.nbReturns
 
@@ -77,40 +78,35 @@ class PortfolioManagement(object):
                 fi = fc(subInput, iLayer, activation_fn=tf.nn.relu)
                 subInput = fi
 
+
             self.currentWeight = fc(fi, self.nbReturns, activation_fn=tf.nn.softmax)
-
             self.currentCost = tf.reduce_sum(tf.abs(self.currentWeight[:,:] - prevWeights) \
-                                                 * self.transactionCosts , axis = 1)
-
+                                                 * self.transactionCosts , axis = 1) # Vecteur 1d de batch
 
             # A changer pour un rendement cumulé
-            self.currentReturn = tf.reduce_sum(self.inputs[:, :, iDate] * self.currentWeight[:,:], axis = 1)
+            self.currentReturn = tf.reduce_sum(self.inputs[:, :, iDate] * self.currentWeight[:,:], axis = 1) # Vecteur 1d de batch
 
             weights.append(self.currentWeight)
-            cost.append(self.currentCost)
-            ptfReturn.append(self.currentReturn)
+            cost.append(self.currentCost) #2d batch x temps
+            ptfReturn.append(self.currentReturn) #2d batch x temps
 
-            '''
-            if self.cost is None :
-                self.cost = self.currentCost
-                self.weights = self.currentWeight
-                self.ptfReturn = self.currentReturn
-            else :
-                self.cost = tf.stack([self.cost, self.currentCost], axis = -1 )
-                self.weights = tf.stack([self.weights, self.currentWeight], axis = -1 )
-                self.ptfReturn = tf.stack([self.ptfReturn, self.currentReturn], axis = -1 )
-            '''
-
-            # Doute ici
             prevWeights = self.currentWeight
 
-        self.ptfReturn = tf.stack(ptfReturn, axis = -1)
-        self.weights = tf.stack(weights, axis = -1)
-        self.cost = tf.stack(cost, axis = -1)
 
-        mean, var= tf.nn.moments(tf.stack(ptfReturn, axis = -1)[:, -1], axes = -1)
-        self.loss = - mean + tf.reduce_mean(tf.stack(cost, axis = -1)[:, -1], axis = -1 ) + self.alpha * var
-        self.train = tf.train.AdamOptimizer().minimize(self.loss)
+        return_cumules = np.sum(ptfReturn, axis= -1) #vecteur 1d de batch
+        self.return_cumules = tf.stack(return_cumules,axis=-1)
+
+        cost_cumules = np.sum(cost, axis= -1) # Vecteur 1d de batch
+        self.cost_cumules = tf.stack(cost_cumules, axis=-1)
+
+        #self.ptfReturn = tf.stack(ptfReturn, axis = -1) #Converti en Tenseur
+        #self.weights = tf.stack(weights, axis = -1)
+        #self.cost = tf.stack(cost, axis = -1)
+
+
+        mean, var= tf.nn.moments(self.return_cumules, axes = -1)
+        self.loss = - mean + tf.math.reduce_mean(self.cost_cumules, axis=-1) + self.alpha * var
+        self.train = tf.train.AdamOptimizer(self.learning_rate).minimize(self.loss)
         return
 
 
