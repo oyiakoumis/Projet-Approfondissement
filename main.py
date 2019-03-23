@@ -1,10 +1,9 @@
 import asset_management_core as MC
 import numpy as np
 
-random.seed(10)
 
 # Trajectoire d'un mouvement brownien sur n periodes de taille dt :
-def brownian_path(dt=0.1, n):
+def brownian_path(dt, n):
     gaussian_vector = np.random.normal(0,dt,n)
     gaussian_vector[0]=0
     return np.cumsum(gaussian_vector)

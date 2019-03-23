@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
-
-
 from sklearn import preprocessing
 import numpy as np
 import tensorflow as tf
 import pandas as pd
 from tensorflow.contrib.slim import fully_connected as fc
-import matplotlib
-from itertools import islice
-from random import randint
 import random
 
 
@@ -60,29 +54,10 @@ class PortfolioManagement(object):
             imported_meta.restore(self.sess, tf.train.latest_checkpoint('./save'))
 
 
-
-
-    def variable_summaries(self, var):
-      """Attach a lot of summaries to a Tensor (for TensorBoard visualization)."""
-      with tf.name_scope('summaries'):
-        mean = tf.reduce_mean(var)
-        tf.summary.scalar('mean', mean)
-        with tf.name_scope('stddev'):
-          stddev = tf.sqrt(tf.reduce_mean(tf.square(var - mean)))
-        tf.summary.scalar('stddev', stddev)
-        tf.summary.scalar('max', tf.reduce_max(var))
-        tf.summary.scalar('min', tf.reduce_min(var))
-        tf.summary.histogram('histogram', var)
-
-
-
-
-    # Build the network and the loss functions
+# Build the network and the loss functions
     def build(self):
 
-        # Modifier le tau pour que ca ne dépende que d'un merit order (i..e 1 si gaz > petrole) et d'une demande résiduelle
         self.inputs = tf.placeholder(dtype=tf.float32, shape=[None, self.nbReturns, self.nbDates], name='inputs')
-
 
         #self.weights = None #tf.Variable(shape = [None, self.nbReturns, self.nbDates])
         cost = []
@@ -91,7 +66,6 @@ class PortfolioManagement(object):
 
         self.cost = None #tf.Variable(shape = [None, self.nbReturns, self.nbDates])
         self.ptfReturn = None #tf.Variable(shape = [None, self.nbReturns, self.nbDates])
-
         self.weights = None #tf.get_variable( name = 'weight0', shape = self.inputs[:, :, 0].get_shape().as_list(),
                              #           trainable=False, initializer=tf.constant_initializer(1./self.nbReturns))
 
@@ -138,7 +112,6 @@ class PortfolioManagement(object):
         self.loss = - mean + tf.reduce_mean(tf.stack(cost, axis = -1)[:, -1], axis = -1 ) + self.alpha * var
         self.train = tf.train.AdamOptimizer().minimize(self.loss)
         return
-
 
 
 
