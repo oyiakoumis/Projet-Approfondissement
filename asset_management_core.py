@@ -105,7 +105,7 @@ class PortfolioManagement(object):
 
 
         mean, var= tf.nn.moments(self.return_cumules, axes = -1)
-        self.loss = - mean + tf.math.reduce_mean(self.cost_cumules, axis=-1) + self.alpha * var
+        self.loss = - mean + tf.reduce_mean(self.cost_cumules, axis=-1) + self.alpha * var
         self.train = tf.train.AdamOptimizer(self.learning_rate).minimize(self.loss)
         return
 
