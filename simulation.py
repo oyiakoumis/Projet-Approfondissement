@@ -1,9 +1,8 @@
+from __future__ import division
 import numpy as np
 from scipy.stats import random_correlation
 import math
-
-# For Python > 3.0 Only
-# else : from __future__ import division
+import matplotlib.pyplot as plt
 
 ''' Simulation 1d
 # Trajectoire d'un mouvement brownien sur n periodes de taille dt : 
@@ -12,18 +11,14 @@ def brownian_path(dt, n):
     gaussian_vector[0] = 0
     return np.cumsum(gaussian_vector)
 
-
-# Mouvement Brownien Geometrique 1D 
-def GBM(So, mu, sigma, W, T, N):
-    t = np.linspace(0., 1., N + 1)
-    S = []
-    S.append(So)
-    for i in range(1, int(N + 1)):
-        drift = (mu - 0.5 * sigma ** 2) * t[i]
-        diffusion = sigma * W[i - 1]
-        S_temp = So * np.exp(drift + diffusion)
-        S.append(S_temp)
-    return S, t
+# Mouvement Brownien Geometrique 1D :
+def gbm(So, mu, sigma, brownian, dt, n):
+    S = np.ones((1,n))
+    t = dt*np.arange(0,n,1.)
+    drift = (mu - 0.5 * sigma ** 2) * t
+    diffusion = sigma * brownian
+    S = So * np.exp(drift + diffusion)
+    return S
 '''
 
 # d = dimension de la matrice, bool = retourne matrice correlations
@@ -47,7 +42,25 @@ def correlated_brownian_paths(d, n, dt, var_matrix):
     return  gaussian_paths
 
 # Geometric correlated brownian motions :
-def geometric_brownian_motion(d, n, dt, inital_values, mu, sigma, brownian_paths):
+def geometric_brownian_motions(d, n, dt, inital_values, mu, sigma, brownian_paths):
     diffusion = np.multiply(sigma,brownian_paths)
     drift = np.multiply(mu - np.square(sigma)/2., dt*np.arange(0,n,1.))
     return np.multiply(inital_values, np.exp(drift + diffusion))
+
+''''# Exemple :
+# Parameters
+nb_stocks = 5
+time_horizon = 1000
+dt = 0.0001
+inital_values = np.ones((nb_stocks,1))
+cov_matrix = var_matrix(nb_stocks)
+mu = np.full((nb_stocks,1),1.)
+sigma = np.full((nb_stocks,1),1.5)
+
+brownian_paths = correlated_brownian_paths(nb_stocks,time_horizon,dt,cov_matrix)
+stocks = geometric_brownian_motions(nb_stocks,time_horizon,dt,inital_values,mu,sigma,brownian_paths)
+
+for i in range(0,nb_stocks):
+    plt.plot(stocks[i,:])
+plt.show()
+'''
