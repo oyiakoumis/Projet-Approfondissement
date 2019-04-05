@@ -2,34 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6fce3bb-248c-4101-84f4-6ea412e2f811" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PortfolioManagement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init_.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_management_core.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PortfolioManagement.py" beforeDir="false" afterPath="$PROJECT_DIR$/PortfolioManagement.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model-1000.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model-1000.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model-1000.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550672981.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550673042.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550673152.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550673335.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550673412.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550673523.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550673605.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550673823.DSP0882901" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1550677141.DowJones.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1552137455.DowJones.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1552137505.DowJones.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1553286104.DowJones.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1553369474.DowJones.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1553370025.DowJones.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/my_test_model/events.out.tfevents.1553370173.DowJones.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulation.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="245">
+              <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -51,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PortfolioManagement.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="79" />
+            <state relative-caret-position="93">
+              <caret line="15" column="56" lean-forward="true" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -66,7 +41,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
+            <state relative-caret-position="-469">
               <caret line="6" column="57" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
@@ -95,6 +70,7 @@
       <find>nb</find>
       <find>dt</find>
       <find>n_steps</find>
+      <find>outp</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -114,8 +90,8 @@
         <option value="$PROJECT_DIR$/data.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/simulation.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PortfolioManagement.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -136,6 +112,10 @@
             <path>
               <item name="portfolio_management" type="b2602c69:ProjectViewProjectNode" />
               <item name="portfolio_management" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="portfolio_management" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -455,19 +435,9 @@
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="-469">
           <caret line="6" column="57" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -475,12 +445,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/framework/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="1661" selection-start-line="1661" selection-end-line="1661" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PortfolioManagement.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="79" />
+        <state relative-caret-position="93">
+          <caret line="15" column="56" lean-forward="true" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
