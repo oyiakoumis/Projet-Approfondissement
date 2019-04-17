@@ -2,39 +2,33 @@ from PortfolioManagement import PortfolioManagement
 import simulation as sim
 import tensorflow as tf
 import numpy as np
+import pandas as pd
 
-# model parameters:
-batch_size = 3
-n_steps = 10
-n_stocks = 5
+
+data_frame = pd.read_csv("/Users/odysseas/Desktop/EDF_Amundi/DATA/SP500 Comp-Ltd/Stocks.csv")
+np.random.seed(10)
+
+def random_stocks(data_frame, n_stocks):
+    stocks_names = data_frame['GVKEY'].unique()
+    stocks_name_sample = np.random.choice(stocks_names, n_stocks)
+    return data_frame.loc[data_frame['GVKEY'].isin(stocks_name_sample)]
+
+# DATA
+n_stocks = 10
+stocks_sample = random_stocks(data_frame, n_stocks)
+
+# Graph parameters:
+n_cells = 365
 transaction_costs = 0.2
 alpha_parameter = 1.5
 learning_rate = 0.001
 n_neurons = 10
-n_layers = 3
-keep_prob = 0.5
 
-# simulation parameters:
-total_time = 30
-n_steps = 1000
-dt = total_time/n_steps
-inital_values = 1 * np.ones((n_stocks,1))
-mu = np.full((n_stocks,1),0.01)
-sigma = np.full((n_stocks,1),0.1)
+# Juste pour tester si le code marche :
+training_set = np.array([[np.random.randn(2, n_cells, n_stocks), np.random.randn(2, n_cells, n_stocks)]])
 
-portefeuille = PortfolioManagement(batch_size, total_time, n_stocks, transaction_costs,
-                                      alpha_parameter, learning_rate, n_neurons, n_layers)
-
+session = tf.Session()
+portefeuille = PortfolioManagement(session, n_cells, n_stocks, transaction_costs, alpha_parameter, learning_rate, n_neurons)
 portefeuille.build()
-
-n_iterations = 1000
-batch_size = portefeuille.batch_size
-
-with tf.Session() as sess:
-    sess.run(portefeuille.init)
-    for iteration in range(n_iterations):
-        X_batch, y_batch = sim.next_batch(batch_size, n_stocks,n_steps,total_time,inital_values,mu,sigma)
-        _, loss_eval = sess.run([portefeuille.training_op, portefeuille.loss], feed_dict={portefeuille.X: X_batch,
-                                                            portefeuille.y: y_batch, portefeuille.keep_prob: keep_prob})
-        if iteration % 100 == 0:
-            print(iteration, "\tloss:", loss_eval)
+portefeuille.training(training_set, n_iterations=1, save_path="./save/my_model.ckpt")
+session.close()
